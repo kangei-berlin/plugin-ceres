@@ -10,7 +10,7 @@ export default {
     render(){
         if(this.isMounted)
         {
-            return this.$slots.default ? this.$slots.default : null;
+            return this.$slots.default ? `<div>${this.$slots.default}</div>` : null;
         }
     },
     mounted(){
