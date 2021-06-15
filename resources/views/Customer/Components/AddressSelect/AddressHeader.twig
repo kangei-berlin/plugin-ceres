@@ -1,11 +1,19 @@
 <script type="x/template" id="vue-address-header">
     <div>
         <template v-if="address">
+            <!-- <template v-if="isAddressFieldEnabled('vatNumber')">
+                <div>${ address.vatNumber }</div>
+            </template> -->
+
             <template v-if="isAddressFieldEnabled('name1')">
                 <div class="font-bold" v-if="address && address.name1 && address.name1.length > 0">
                     ${ address.name1 }
                 </div>
             </template>
+
+            <!--<template v-if="isAddressFieldEnabled('mail')">
+                <div>${ address.mail }</div>
+            </template> -->
     
             <template v-if="isAddressFieldEnabled('contactPerson')">
                 <div>${ address | optionType(12) }</div>
