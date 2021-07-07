@@ -32,13 +32,12 @@ const actions =
         {
             return new Promise((resolve, reject) =>
             {
-                const oldShippingCountryId = state.shippingCountryId;
 
                 commit("setShippingCountryId", shippingCountryId);
                 ApiService.post("/rest/io/shipping/country", { shippingCountryId })
                     .done(data =>
                     {
-                        if (isNullOrUndefined(oldShippingCountryId) || oldShippingCountryId !== data)
+                        if (isNullOrUndefined(state.shippingCountryId) || state.shippingCountryId !== data)
                         {
                             if (openBasketPreview)
                             {
@@ -51,7 +50,7 @@ const actions =
                     })
                     .fail(error =>
                     {
-                        commit("setShippingCountryId", oldShippingCountryId);
+                        commit("setShippingCountryId", state.shippingCountryId);
                         reject(error);
                     });
             });
