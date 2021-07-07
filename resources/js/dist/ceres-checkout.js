@@ -80457,12 +80457,11 @@ var actions = {
     var shippingCountryId = _ref2.shippingCountryId,
         openBasketPreview = _ref2.openBasketPreview;
     return new Promise(function (resolve, reject) {
-      var oldShippingCountryId = state.shippingCountryId;
       commit("setShippingCountryId", shippingCountryId);
       ApiService.post("/rest/io/shipping/country", {
         shippingCountryId: shippingCountryId
       }).done(function (data) {
-        if (Object(_helper_utils__WEBPACK_IMPORTED_MODULE_3__["isNullOrUndefined"])(oldShippingCountryId) || oldShippingCountryId !== data) {
+        if (Object(_helper_utils__WEBPACK_IMPORTED_MODULE_3__["isNullOrUndefined"])(state.shippingCountryId) || state.shippingCountryId !== data) {
           if (openBasketPreview) {
             Object(_services_UrlService__WEBPACK_IMPORTED_MODULE_4__["setUrlParam"])({
               openBasketPreview: 1
@@ -80474,7 +80473,7 @@ var actions = {
 
         resolve(data);
       }).fail(function (error) {
-        commit("setShippingCountryId", oldShippingCountryId);
+        commit("setShippingCountryId", state.shippingCountryId);
         reject(error);
       });
     });
