@@ -32,6 +32,7 @@ const actions =
         {
             return new Promise((resolve, reject) =>
             {
+                const oldShippingCountryId = state.shippingCountryId;
 
                 commit("setShippingCountryId", shippingCountryId);
                 ApiService.post("/rest/io/shipping/country", { shippingCountryId })
@@ -50,7 +51,7 @@ const actions =
                     })
                     .fail(error =>
                     {
-                        commit("setShippingCountryId", state.shippingCountryId);
+                        commit("setShippingCountryId", oldShippingCountryId);
                         reject(error);
                     });
             });
