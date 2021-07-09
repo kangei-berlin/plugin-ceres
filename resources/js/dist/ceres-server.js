@@ -88356,6 +88356,7 @@ var actions = {
     var shippingCountryId = _ref2.shippingCountryId,
         openBasketPreview = _ref2.openBasketPreview;
     return new Promise(function (resolve, reject) {
+      var oldShippingCountryId = state.shippingCountryId;
       commit("setShippingCountryId", shippingCountryId);
       ApiService.post("/rest/io/shipping/country", {
         shippingCountryId: shippingCountryId
@@ -88372,7 +88373,7 @@ var actions = {
 
         resolve(data);
       }).fail(function (error) {
-        commit("setShippingCountryId", state.shippingCountryId);
+        commit("setShippingCountryId", oldShippingCountryId);
         reject(error);
       });
     });
