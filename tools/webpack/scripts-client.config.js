@@ -1,5 +1,6 @@
 const path = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
+const VueSSRClientPlugin = require("vue-server-renderer/client-plugin");
 
 module.exports = env =>
 {
@@ -50,7 +51,9 @@ module.exports = env =>
         plugins: [
             new VueLoaderPlugin({
                 exposeFilename: true
-            })
+            }),
+            // This plugins generates `vue-ssr-client-manifest.json` in the output directory.
+            new VueSSRClientPlugin()
         ]
     };
 };

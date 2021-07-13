@@ -1,6 +1,7 @@
 const path = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const webpack = require("webpack");
+const VueSSRServerPlugin = require("vue-server-renderer/server-plugin");
 
 module.exports = env =>
 {
@@ -42,7 +43,9 @@ module.exports = env =>
             }),
             new webpack.optimize.LimitChunkCountPlugin({
                 maxChunks: 1
-            })
+            }),
+            // This plugins generates `vue-ssr-server-bundle.json` in the output directory.
+            new VueSSRServerPlugin()
         ]
     };
 };
